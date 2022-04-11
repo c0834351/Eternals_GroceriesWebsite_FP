@@ -137,3 +137,17 @@ h4{
 .col-4:hover{
     transform: translateY(-10px);
 }
+
+/*----------offers css style----------*/
+
+.offer{
+    background: radial-gradient(aliceblue,hsl(69, 77%, 90%));
+    padding: 30px 0;
+    margin-top: 80px;
+}
+.col-2 .offer-img{
+    padding: 50px;
+}
+small{
+    color: rgb(59, 60, 57);
+}
