@@ -150,6 +150,7 @@ h4{
 }
 small{
     color: rgb(59, 60, 57);
+    font-size: 16px;
 }
 
 /*----- Users css style ------*/
@@ -188,4 +189,22 @@ small{
     font-weight: 600;
     font-size: 20px;
     color: black;
+}
+
+/*----- companies css style ------*/
+
+.companies{
+    margin: 100px auto;
+}
+.col-5{
+    width: 100px;
+}
+.col-5 img{
+    width: 100%;
+    cursor: pointer;
+    filter: grayscale(100%);
+}
+
+.col-5 img:hover{
+    filter: grayscale(0)
 }
