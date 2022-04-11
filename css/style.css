@@ -151,3 +151,41 @@ h4{
 small{
     color: rgb(59, 60, 57);
 }
+
+/*----- Users css style ------*/
+
+.user{
+    padding-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.user .col-3{
+    text-align: center;
+    padding: 50px 30px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 1);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.user .col-3 img{
+    width: 50px;
+    margin-top: 20px;
+    border-radius: 40%;
+}
+.user .col-3:hover{
+    transform: translateY(-10px);
+}
+.col-3 span{
+    font-size: 34px;
+    color: green;
+}
+
+.col-3 p{
+    font-size: 12px;
+    margin: 12px 0;
+
+}
+.user .col-3 h3{
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+}
