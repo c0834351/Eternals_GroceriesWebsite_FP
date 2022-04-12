@@ -3,101 +3,121 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: 'Nunito', sans-serif;
 }
+
 /*------------header css styles------------*/
-.navbar{
+.navbar {
     display: flex;
     align-items: center;
     padding: 20px;
 }
-nav{
+
+nav {
     flex: 1;
     text-align: right;
 }
-nav ul{
+
+nav ul {
     display: inline-block;
     list-style-type: none;
 }
-nav ul li{
+
+nav ul li {
     display: inline-block;
     margin-right: 20px;
 }
-a{
+
+a {
     text-decoration: none;
     color: rgb(59, 60, 57);
 }
-p{
+
+p {
     color: rgb(59, 60, 57);
 }
-.container{
+
+.container {
     max-width: 1300px;
     margin: auto;
     padding-left: 25px;
     padding-right: 25px;
 }
-.row{
+
+.row {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
 
 }
-.col-2{
+
+.col-2 {
     flex-basis: 50%;
     min-width: 300px;
 }
-.col-2 img{
+
+.col-2 img {
     max-width: 100%;
     padding: 50px 0px;
 }
-.col-2 h1{
+
+.col-2 h1 {
     font-size: 50px;
     line-height: 60px;
     margin: 25px 0px;
 }
-.btn{
+
+.btn {
     display: inline-block;
     background-color: green;
-    color:aliceblue;
+    color: aliceblue;
     padding: 10px 35px;
     margin: 30px 0;
     border-radius: 30px;
     transition: 0.5s;
 }
-.btn:hover{
-    background:rgb(127, 47, 95);
+
+.btn:hover {
+    background: rgb(127, 47, 95);
 }
-.header{
-    background: radial-gradient(aliceblue,#def3ba)
+
+.header {
+    background: radial-gradient(aliceblue, #def3ba)
 }
-.header .row{
+
+.header .row {
     margin-top: 60px;
 }
 
 /* categories css styles*/
 
-.categories{
+.categories {
     margin: 70px 0;
 }
-.col-3{
+
+.col-3 {
     flex-basis: 30%;
     min-width: 250px;
     margin-bottom: 30px;
 }
-.col-3 img{
+
+.col-3 img {
     width: 100%
- }
- .title{
+}
+
+.title {
     text-align: center;
     margin: 0 auto 80px;
     position: relative;
     line-height: 60px;
     color: rgb(59, 60, 57);
 }
-.title::after{
-    content:'';
+
+.title::after {
+    content: '';
     background: green;
     width: 100px;
     height: 5px;
@@ -108,84 +128,98 @@ p{
     transform: translateX(-50%);
 
 }
- .small-container{
+
+.small-container {
     max-width: 1080px;
     margin: auto;
     padding-left: 25px;
     padding-right: 25px;
 }
-.col-4{
+
+.col-4 {
     flex-basis: 25%;
     padding: 10px;
     min-width: 200px;
     margin-bottom: 50px;
     transition: 0.5s;
 }
-.col-4 img{
+
+.col-4 img {
     width: 100%;
 }
-h4{
+
+h4 {
     color: rgb(59, 60, 57);
     font-weight: normal;
 }
-.col-4 p{
+
+.col-4 p {
     font-size: 14px;
 }
-.rating span{
+
+.rating span {
     color: green;
 }
-.col-4:hover{
+
+.col-4:hover {
     transform: translateY(-10px);
 }
 
 /*----------offers css style----------*/
 
-.offer{
-    background: radial-gradient(aliceblue,hsl(69, 77%, 90%));
+.offer {
+    background: radial-gradient(aliceblue, hsl(69, 77%, 90%));
     padding: 30px 0;
     margin-top: 80px;
 }
-.col-2 .offer-img{
+
+.col-2 .offer-img {
     padding: 50px;
 }
-small{
+
+small {
     color: rgb(59, 60, 57);
     font-size: 16px;
 }
 
 /*----- Users css style ------*/
 
-.user{
+.user {
     padding-top: 100px;
     padding-left: 50px;
     padding-right: 50px;
 }
-.user .col-3{
+
+.user .col-3 {
     text-align: center;
     padding: 50px 30px;
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 1);
     cursor: pointer;
     transition: 0.5s;
 }
-.user .col-3 img{
+
+.user .col-3 img {
     width: 50px;
     margin-top: 20px;
     border-radius: 40%;
 }
-.user .col-3:hover{
+
+.user .col-3:hover {
     transform: translateY(-10px);
 }
-.col-3 span{
+
+.col-3 span {
     font-size: 34px;
     color: green;
 }
 
-.col-3 p{
+.col-3 p {
     font-size: 12px;
     margin: 12px 0;
 
 }
-.user .col-3 h3{
+
+.user .col-3 h3 {
     font-weight: 600;
     font-size: 20px;
     color: black;
@@ -193,72 +227,144 @@ small{
 
 /*----- companies css style ------*/
 
-.companies{
+.companies {
     margin: 100px auto;
 }
-.col-5{
+
+.col-5 {
     width: 100px;
 }
-.col-5 img{
+
+.col-5 img {
     width: 100%;
     cursor: pointer;
     filter: grayscale(100%);
 }
 
-.col-5 img:hover{
+.col-5 img:hover {
     filter: grayscale(0)
 }
 
 /*----- Footer css style ------*/
 
-.footer{
+.footer {
     background: #000;
     color: #8a8a8a;
     font-size: 14px;
     padding: 60px 0 20px;
 }
-.footer p{
+
+.footer p {
     color: #8a8a8a;
 }
-.footer h3{
+
+.footer h3 {
     color: whitesmoke;
     margin-bottom: 20px;
 }
-.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4{
+
+.footer-col-1,
+.footer-col-2,
+.footer-col-3,
+.footer-col-4 {
     min-width: 250px;
     margin-bottom: 20px;
 }
-.footer-col-1{
+
+.footer-col-1 {
     flex-basis: 30%;
     text-align: left;
 }
-.footer-col-2{
+
+.footer-col-2 {
     flex: 1;
     text-align: left;
 }
-.footer-col-2 img{
+
+.footer-col-2 img {
     width: 180px;
     margin-bottom: 20px;
 }
-.footer-col-3, .footer-col-4{
+
+.footer-col-3,
+.footer-col-4 {
     flex-basis: 12%;
     text-align: left;
 }
-ul{
+
+ul {
     list-style-type: none;
 }
-.app-logo{
+
+.app-logo {
     margin-top: 20px;
 }
-.app-logo img{
+
+.app-logo img {
     width: 140px;
 }
-.footer hr{
+
+.footer hr {
     border: none;
     background: whitesmoke;
     height: 1px;
     margin: 20px 0;
 }
-.copyright{
+
+.copyright {
     text-align: center;
+}
+
+/* making responsive */
+.menu-icon{
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+/* ---------- media query for menu-----------*/
+
+@media only screen and (max-width: 800px) {
+    nav ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+
+    nav ul li {
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav ul li a {
+        color: #fff;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+}
+
+/* ---------- media query for less than 600px-----------*/
+
+@media only screen and (max-width: 600px) {
+    .row {
+        text-align: center;
+    }
+
+    .col-2,
+    .col-3,
+    .col-4 {
+        flex-basis: 100%;
+    }
+
+
 }
