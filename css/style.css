@@ -228,7 +228,22 @@ small {
     font-size: 20px;
     color: black;
 }
-
+.left-side{
+    display: flex;
+    text-align: center;
+}
+.address details{
+    width: 30%;
+    margin-right: 50px;
+}
+.email details{
+    width: 30%;
+    margin-right: 50px;
+}
+.phone details{
+    width: 30%;
+    margin-right: 50px;
+}
 /*----- companies css style ------*/
 
 .companies {
@@ -255,6 +270,7 @@ small {
     background: #000;
     color: #8a8a8a;
     font-size: 14px;
+    width: 100%;
     padding: 60px 0 20px;
 }
 
