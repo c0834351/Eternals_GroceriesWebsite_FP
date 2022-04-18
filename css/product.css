@@ -4,8 +4,8 @@
 }
 
 select {
-    border: 1px solid #ff523b;
-    padding: 5px;
+    border: 1px solid green;
+    padding: 8px;
 }
 
 select:focus {
@@ -18,7 +18,7 @@ select:focus {
 
 .pagination-btn span {
     display: inline-block;
-    border: 1px solid #ff523b;
+    border: 1px solid green;
     margin-left: 10px;
     width: 40px;
     height: 40px;
@@ -28,7 +28,7 @@ select:focus {
 }
 
 .pagination-btn span:hover {
-    background: #ff523b;
+    background: green;
     color: aliceblue;
 }
 
@@ -186,4 +186,64 @@ td:last-child{
 
 th:last-child{
     text-align: right;
+}
+
+/*Single product details page css styles*/
+.single-product-details{
+    margin-top: 80px;
+
+}
+.single-product-details col-2 img{
+    padding: 0px;
+
+}
+.single-product-details col-2{
+    padding: 20px;
+}
+.single-product-details h4{
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+.single-product-details select{
+    display: block;
+    padding: 8px;
+    margin-top: 20px;
+    border: 1px solid green;
+}
+.single-product-details input{
+    width: 45px;
+    height: 40px;
+    padding-left: 8px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 1px solid green;
+}
+input:focus{
+    outline: none;
+}
+.small-img-row{
+    display: flex;
+    justify-content: space-between;
+}
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 600px){
+    .single-product-details .row{
+        text-align: left;
+    }
+    .single-product-details .col-2{
+        padding: 20px 0;
+    }
+    .single-product-details h1{
+        font-size: 26px;
+        line-height: 20px;
+    }
+    .single-product-details .col-2 img{
+        padding-top: 0px;
+    }
 }
