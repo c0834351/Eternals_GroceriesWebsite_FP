@@ -117,6 +117,38 @@
     </script>
     <!-------------Js for form-------------->
     <script>
+        // Database version.
+        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+        let version = 1;
+        let datastore;
+        // Open a connection to the datastore.
+        const request = indexedDB.open('groceriesdb', version);
+
+        // Handle datastore upgrades.
+        request.onupgradeneeded = function(e) {
+            const db = request.result;
+            // Delete the old datastore.
+            if (db.objectStoreNames.contains('users')) {
+                db.deleteObjectStore('users');
+            }
+            // Create a new datastore.
+            const store = db.createObjectStore('users', {
+                keyPath: 'username'
+            });
+            store.createIndex("userid", ["username"], {unique:false});
+        };
+
+        // Handle successful datastore access.
+        request.onsuccess = function(e) {
+            // Get a reference to the DB.
+            datastore = request.result;
+        };
+
+        request.onerror = function(e) {
+            console.error("Error opening database");
+            console.error(e);
+        };
+
         function loginClicked(){
             var username = document.getElementById("username").value.trim();
             var pwd = document.getElementById("password").value.trim();
@@ -129,53 +161,54 @@
                 loginerrlabel.textContent = 'Password is Empty';
                 return;
             }
-            window.location = "index.html";
-        }
-        function registerClicked(){
-            var unvalue = document.getElementById("usernamevalue").value.trim();
-            var emailvalue = document.getElementById("emailvalue").value.trim();
-            var pwdvalue = document.getElementById("passwordvalue").value.trim();
-            var registererrlabel = document.getElementById('registererror');
-            if(unvalue===''){
-                registererrlabel.textContent = 'Username is empty';
-                return;
-            }else {
-                registererrlabel.textContent = '';
-            }
-            if(pwdvalue===''){
-                registererrlabel.textContent = 'Password is empty';
-                return;
-            }else {
-                registererrlabel.textContent = '';
-            }
-            if(emailvalue===''){
-                registererrlabel.textContent = 'Email address is empty';
-                return;
-            }else {
-                registererrlabel.textContent = '';
-            }
-            
-            window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-            if(!window.indexedDB){
-                console.log("Your browser doesn't support indexedDB database");
-                return;
-            }
-            const dbname = "groceryDB";
-            const request = window.indexedDB.open(dbname);
+            const db = datastore;
+            const transaction = db.transaction("users", "readonly");
+            const userindex = store.index("userid");
+            const userquery = userindex.getAll([username]);
+            const objStore = transaction.objectStore("users");
+            let getuser = objStore.get(username);
+            // var getreq = objStore.getAll();
+            // var keyRange = IDBKeyRange.lowerBound(0);
+            //var cursorRequest = objStore.openCursor();
+            // var users = [];
 
-            request.onupgradeneeded = ()=>{
-                let db = request.result;
-                let store = db.createObjectStore("users",{autoIncrement:true});
-                store.put({username: unvalue, email: emailvalue, pwd: pwdvalue});
-            };
-
-            request.onsuccess = ()=>{
-                if(request.readyState =="done"){
-                    console.log("User registered successfully");
-                    registererrlabel.textContent = "User registered successfully";
+            userquery.onsuccess = function () {
+                console.log(userquery.result);
+                if(pwd != userquery.result.password) {
+                alert("Could not log you in");
+                return;
+                } else {
+                    window.open("index.html");
                 }
-            };
+            }
 
+            getuser.onerror = function(e) {
+                alert("Unable to login due to technical issues");
+            }
+
+            getuser.oncomplete = function(e) {
+                if(pwd != e.target.result.password) {
+                alert("Could not log you in");
+                return;
+                } else {
+                    window.open("index.html", "_self");
+                }
+            }
+
+            // getreq.onsuccess = function(e) {
+            //     users.push(e.target.result);
+            // }
+
+            // cursorRequest.onsuccess = function(e) {
+            //     var result = e.target.result;
+            //     if (!!result == false) {
+            //         return;
+            //     }
+            //     users.push(result.value);
+            //     result.continue();
+            // };
+            console.log(users.length);
+            //window.open("index.html");
         }
     </script>
 </body>

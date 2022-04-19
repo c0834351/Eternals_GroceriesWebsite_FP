@@ -55,10 +55,10 @@
             </div>
         </div>
         <div class="col-2">
-            <p>Green Grapes</p>
+            <p id="productname">Green Grapes</p>
             <h1>Grapes from Mitra Farm House</h1>
-            <h4>$10.00</h4>
-            <select name="" id="">
+            <h4 id="productprice">$10.00</h4>
+            <select name="" id="quantity">
                 <option value="">Select Options</option>
                 <option value="">100g</option>
                 <option value="">250g</option>
@@ -67,7 +67,7 @@
                 <option value="">1kg</option>
             </select>
             <input type="number" value="1">
-            <a href="" class="btn">Add to Cart</a>
+            <a href="" class="btn" onclick="addtoCart()">Add to Cart</a>
             <h3>Product Details</h3>
             <br>
             <p>Sweet and honey taste Fresh Green Grapes are from the Mitra Farm House. Green grapes have a green coloured skin and a clear flesh with a sweet taste that makes a perfect snack or can be used in a fruit salad. </p>
@@ -184,6 +184,63 @@
             else {
                 menuItems.style.maxHeight = "0px"
             }
+        }
+        // Database version.
+        var version = 1;
+        var datastore = null;
+        // Open a connection to the datastore.
+        var request = indexedDB.open('groceriesdb', version);
+
+        // Handle datastore upgrades.
+        request.onupgradeneeded = function(e) {
+            var db = request.result;
+            // Delete the old datastore.
+            if (db.objectStoreNames.contains('carts')) {
+                db.deleteObjectStore('carts');
+            }
+            // Create a new datastore.
+            var store = db.createObjectStore('carts');
+        };
+
+        // Handle successful datastore access.
+        request.onsuccess = function(e) {
+            // Get a reference to the DB.
+            datastore = e.target.result;
+        };
+
+        request.onerror = function(e) {
+            console.log('Error opening database');
+        };
+        function addtoCart() {
+            var productimage = document.getElementById("productImg").src;
+            var quant = document.getElementById("quantity");
+            var prodname = document.getElementById("productname");
+            var prodprice = document.getElementById("productprice");
+
+            var db = datastore;
+            // Initiate a new transaction.
+            var transaction = db.transaction(['carts'], 'readwrite');
+            // Get the datastore.
+            var objStore = transaction.objectStore('carts');
+            
+            // Create an object for the todo item.
+            var item = {
+                'productimage': productimage,
+                'quantity': quant,
+                'productname': prodname,
+                'productprice': prodprice
+            };
+            // Create the datastore request.
+            var request = objStore.put(item);
+
+            request.onsuccess = function(e){
+                console.log('Item added to cart');
+            };
+
+            request.onerror = function(e) {
+                console.log('Error adding to cart');
+            };
+
         }
     </script>
     <!-- JS for Products Images-->
