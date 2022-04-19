@@ -15,8 +15,12 @@ form.addEventListener('submit', (e) =>{
 		messages.push('Email is required')
 	}
 
-	if(password.value.length <= 6){
+	if(password.value.length == 0){
 		messages.push('password is required')
+	}
+
+	if(password.value.length > 1 && password.value.length < 6){
+		messages.push('password should be more than 6 characters')
 	}
 
 	if(messages.length > 0){
