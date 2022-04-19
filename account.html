@@ -54,7 +54,7 @@
                             <input type="text" id="usernamevalue" placeholder="Username">
                             <input type="text" id="emailvalue" placeholder="email">
                             <input type="password" id="passwordvalue" placeholder="password">
-                            <button type="submit" class="btn" onclick="registerClicked()">Register</button>
+                            <button type="submit" class="btn" id="registerbtn">Register</button>
                             <a href="login.html"> Already have an account? Login</a>
                             <span id="registererror"></span>
                         </form>
@@ -115,94 +115,8 @@
         }
     </script>
     <!-------------Js for form-------------->
-    <script>
-        // Database version.
-        var version = 1;
-        var datastore = null;
-        // Open a connection to the datastore.
-        var request = indexedDB.open('groceriesdb', version);
-
-        // Handle datastore upgrades.
-        request.onupgradeneeded = function(e) {
-            var db = request.result;
-            // Delete the old datastore.
-            if (db.objectStoreNames.contains('users')) {
-                db.deleteObjectStore('users');
-            }
-            // Create a new datastore.
-            var store = db.createObjectStore('users', {
-                keyPath: 'username'
-            });
-            store.createIndex("userid", ["username"], {unique:false});
-        };
-
-        // Handle successful datastore access.
-        request.onsuccess = function(e) {
-            // Get a reference to the DB.
-            datastore = e.target.result;
-        };
-
-        request.onerror = function(e) {
-            console.log('Error opening database');
-        };
-        function registerClicked(){
-            var required = false;
-            var unvalue = document.getElementById("usernamevalue").value.trim();
-            var emailvalue = document.getElementById("emailvalue").value.trim();
-            var pwdvalue = document.getElementById("passwordvalue").value.trim();
-            var registererrlabel = document.getElementById('registererror');
-            if(unvalue===''){
-                registererrlabel.textContent = 'Username is empty';
-                required = true;
-            }else {
-                registererrlabel.textContent = '';
-                required = false;
-            }
-            if(pwdvalue===''){
-                registererrlabel.textContent = 'Password is empty';
-                required = true;
-            }else {
-                registererrlabel.textContent = '';
-                required = false;
-            }
-            if(emailvalue===''){
-                registererrlabel.textContent = 'Email address is empty';
-                required = true;
-            }else {
-                registererrlabel.textContent = '';
-                required = false;
-            }
-
-        var db = datastore;
-        // Initiate a new transaction.
-        var transaction = db.transaction(['users'], 'readwrite');
-        // Get the datastore.
-        var objStore = transaction.objectStore('users');
-        // Create a timestamp for the todo item.
-        var timestamp = new Date().getTime();
-        // Create an object for the todo item.
-        var user = {
-            'username': unvalue,
-            'password': pwdvalue,
-            'email': emailvalue,
-            'timestamp': timestamp
-        };
-        // Create the datastore request.
-        var request = objStore.put(user);
-
-        request.onsuccess = function(e){
-            console.log('User registered successfully');
-            registererrlabel.textContent='Registration successful, Login now';
-        };
-
-        request.onerror = function(e) {
-            console.log('Error registering the user');
-        };
-
-    }
-
-        
-    </script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>

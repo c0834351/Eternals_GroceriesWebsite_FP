@@ -53,7 +53,7 @@
                         <form id="LoginForm">
                             <input type="text" id="username" placeholder="Username">
                             <input type="password" id="password" placeholder="password">
-                            <button type="submit" class="btn" onclick="loginClicked()">Login</button>
+                            <button type="submit" class="btn" id="loginbtn">Login</button>
                             <a href="">Forgot Password</a>
                             <br>
                             <a href="account.html">Don't have an account? Register</a>
@@ -116,101 +116,8 @@
         }
     </script>
     <!-------------Js for form-------------->
-    <script>
-        // Database version.
-        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
-        let version = 1;
-        let datastore;
-        // Open a connection to the datastore.
-        const request = indexedDB.open('groceriesdb', version);
-
-        // Handle datastore upgrades.
-        request.onupgradeneeded = function(e) {
-            const db = request.result;
-            // Delete the old datastore.
-            if (db.objectStoreNames.contains('users')) {
-                db.deleteObjectStore('users');
-            }
-            // Create a new datastore.
-            const store = db.createObjectStore('users', {
-                keyPath: 'username'
-            });
-            store.createIndex("userid", ["username"], {unique:false});
-        };
-
-        // Handle successful datastore access.
-        request.onsuccess = function(e) {
-            // Get a reference to the DB.
-            datastore = request.result;
-        };
-
-        request.onerror = function(e) {
-            console.error("Error opening database");
-            console.error(e);
-        };
-
-        function loginClicked(){
-            var username = document.getElementById("username").value.trim();
-            var pwd = document.getElementById("password").value.trim();
-            var loginerrlabel = document.getElementById('loginerror');
-            if(username===''){
-                loginerrlabel.textContent = 'Username is Empty';
-                return;
-            }
-            if(pwd===''){
-                loginerrlabel.textContent = 'Password is Empty';
-                return;
-            }
-            const db = datastore;
-            const transaction = db.transaction("users", "readonly");
-            const userindex = store.index("userid");
-            const userquery = userindex.getAll([username]);
-            const objStore = transaction.objectStore("users");
-            let getuser = objStore.get(username);
-            // var getreq = objStore.getAll();
-            // var keyRange = IDBKeyRange.lowerBound(0);
-            //var cursorRequest = objStore.openCursor();
-            // var users = [];
-
-            userquery.onsuccess = function () {
-                console.log(userquery.result);
-                if(pwd != userquery.result.password) {
-                alert("Could not log you in");
-                return;
-                } else {
-                    window.open("index.html");
-                }
-            }
-
-            getuser.onerror = function(e) {
-                alert("Unable to login due to technical issues");
-            }
-
-            getuser.oncomplete = function(e) {
-                if(pwd != e.target.result.password) {
-                alert("Could not log you in");
-                return;
-                } else {
-                    window.open("index.html", "_self");
-                }
-            }
-
-            // getreq.onsuccess = function(e) {
-            //     users.push(e.target.result);
-            // }
-
-            // cursorRequest.onsuccess = function(e) {
-            //     var result = e.target.result;
-            //     if (!!result == false) {
-            //         return;
-            //     }
-            //     users.push(result.value);
-            //     result.continue();
-            // };
-            console.log(users.length);
-            //window.open("index.html");
-        }
-    </script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
